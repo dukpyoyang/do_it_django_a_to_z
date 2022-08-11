@@ -3,6 +3,8 @@ import os
 
 class Post(models.Model):
     title = models.CharField(max_length=50)  # 문자를 담는 필드를 만든다(최대길이 50)
+    hook_text = models.CharField(max_length=100, blank=True)
+
     content = models.TextField()  # 문자열의 길이 제한없는 TextField를 사용해 본문필드 만듬
 
     created_at = models.DateTimeField(auto_now_add=True)  # 월,일,시,분,초를 기록할 수 있는 날짜필드 만듬.
@@ -12,6 +14,7 @@ class Post(models.Model):
                                    blank=True)
     file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d/',
                                    blank=True)
+
 
     # author: 추후 작성 예정
 
