@@ -52,7 +52,7 @@ class PostCreate(LoginRequiredMixin,UserPassesTestMixin, CreateView):
                         tag.slug = slugify(t, allow_unicode=True)
                         tag.save()
                     self.object.tags.add(tag)
-                return response
+            return response
 
         else:
             return redirect('/blog/')
@@ -76,6 +76,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
             for t in self.object.tags.all():
                 tags_str_list.append(t.name)
             context['tags_str_default'] = '; '.join(tags_str_list)
+
         return context
 
     def form_valid(self, form):
@@ -94,7 +95,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
                     tag.slug = slugify(t, allow_unicode=True)
                     tag.save()
                 self.object.tags.add(tag)
-            return response
+        return response
 
 
 
